@@ -14,19 +14,11 @@ public class goldSpiral : MonoBehaviour
     private Vector3 spawnPosition;
     private float currentSize;
 
-    private float numberToLeft;
-    private float numberToRight;
-    private float numberToAbove;
-    private float numberToDown = 1;
-
-    private float oldNumberToRight;
-    private float oldNumberToLeft;
-    private float oldNumberToAbove;
-    private float oldNumberToDown = 1;
-
     private float normalSize = 0.3f;
 
     private float oldSize;
+
+    private float count;
 
 
 
@@ -39,15 +31,19 @@ public class goldSpiral : MonoBehaviour
 
     public void spawnCube(float size)
     {
-        
+        if (count > 3)
+            return;
+
+
         currentSize = size;
 
-
+        //First 3 squares of the golden spiral are not with the same rules thats why i am doing those seperatly.
         if(currentNumber < 1)
         {
             GameObject firstTile = Instantiate(prefab, prefab.transform.position, Quaternion.identity);
+
             firstTile.transform.localScale = firstTile.transform.localScale * size;
-            firstTile.transform.localScale = new Vector3(firstTile.transform.localScale.x, firstTile.transform.localScale.y, 0f);
+            firstTile.transform.localScale = new Vector3(firstTile.transform.localScale.x, firstTile.transform.localScale.y, .3f);
 
             oldSize = firstTile.transform.localScale.x;
             spawnPosition = firstTile.transform.position;
@@ -58,8 +54,11 @@ public class goldSpiral : MonoBehaviour
         if (currentNumber < 2)
         {
             GameObject firstTile = Instantiate(prefab, prefab.transform.position, Quaternion.identity);
+
+
+
             firstTile.transform.localScale = firstTile.transform.localScale * size;
-            firstTile.transform.localScale = new Vector3(firstTile.transform.localScale.x, firstTile.transform.localScale.y, 0f);
+            firstTile.transform.localScale = new Vector3(firstTile.transform.localScale.x, firstTile.transform.localScale.y, .3f);
 
             firstTile.transform.position += new Vector3(firstTile.transform.localScale.x, 0f, 0f);
             spawnPosition = firstTile.transform.position;
@@ -72,8 +71,9 @@ public class goldSpiral : MonoBehaviour
         if (currentNumber < 3)
         {
             GameObject firstTile = Instantiate(prefab, spawnPosition, Quaternion.identity);
+
             firstTile.transform.localScale = firstTile.transform.localScale * currentSize;
-            firstTile.transform.localScale = new Vector3(-firstTile.transform.localScale.x, -firstTile.transform.localScale.y, 0f);
+            firstTile.transform.localScale = new Vector3(-firstTile.transform.localScale.x, -firstTile.transform.localScale.y, .3f);
 
             firstTile.transform.position += new Vector3(oldSize, 0f, 0f);
             spawnPosition = firstTile.transform.position;
@@ -83,10 +83,16 @@ public class goldSpiral : MonoBehaviour
             return;
         }
 
-        GameObject tile = Instantiate(prefab, spawnPosition, Quaternion.identity);
-        Debug.Log(directionY);
-        Debug.Log(directionX);
 
+        GameObject tile = Instantiate(prefab, spawnPosition, Quaternion.identity);
+        count++;
+
+       
+        //Check what direction the block is going to face to make it easier what block is causing trouble.
+        //Right == 1x
+        // left == -1x
+        // Up == 1y
+        // down == -1y
         if (directionX > 0)
         {
             tile.name = "Right";
@@ -122,28 +128,20 @@ public class goldSpiral : MonoBehaviour
             directionY = 0;
             return;
         }
-
-
-
-
-
-
         currentNumber++;
     }
 
+
+    //Here i spawn the golden spiral blocks in the right order.
     void startPosition(int dir, GameObject tile)
     {
-
-        childPrefab = tile.GetComponentInChildren<Transform>();
 
         switch (dir)
         {
             case 0:
                 
-
-
                 tile.transform.localScale = tile.transform.localScale * currentSize;
-                tile.transform.localScale = new Vector3(tile.transform.localScale.x, tile.transform.localScale.y, 0f);
+                tile.transform.localScale = new Vector3(tile.transform.localScale.x, tile.transform.localScale.y, .3f);
 
                 tile.transform.position += new Vector3(oldSize, oldSize, 0f);
                 spawnPosition = tile.transform.position;
@@ -151,10 +149,8 @@ public class goldSpiral : MonoBehaviour
                 break;
             case 1:
 
-                
-
                 tile.transform.localScale = tile.transform.localScale * currentSize;
-                tile.transform.localScale = new Vector3(-tile.transform.localScale.x, -tile.transform.localScale.y, 0f);
+                tile.transform.localScale = new Vector3(-tile.transform.localScale.x, -tile.transform.localScale.y, .3f);
 
                 tile.transform.position += new Vector3(oldSize, oldSize, 0f);
                 spawnPosition = tile.transform.position;
@@ -165,7 +161,7 @@ public class goldSpiral : MonoBehaviour
            
 
                 tile.transform.localScale = tile.transform.localScale * currentSize;
-                tile.transform.localScale = new Vector3(tile.transform.localScale.x, -tile.transform.localScale.y, 0f);
+                tile.transform.localScale = new Vector3(tile.transform.localScale.x, -tile.transform.localScale.y, .3f);
 
                 tile.transform.position += new Vector3(oldSize, -oldSize, 0f);
                 spawnPosition = tile.transform.position;
@@ -173,24 +169,15 @@ public class goldSpiral : MonoBehaviour
                 break;
             case 3:
 
-                
-
+               
                 tile.transform.localScale = tile.transform.localScale * currentSize;
-                tile.transform.localScale = new Vector3(-tile.transform.localScale.x, tile.transform.localScale.y, 0f);
+                tile.transform.localScale = new Vector3(-tile.transform.localScale.x, tile.transform.localScale.y, .3f);
 
                 tile.transform.position += new Vector3(oldSize, -oldSize, 0f);
                 spawnPosition = tile.transform.position;
                 oldSize = tile.transform.localScale.x;
                 break;
 
-
-
-
         }
     }
-
-
-    
-
-
 }

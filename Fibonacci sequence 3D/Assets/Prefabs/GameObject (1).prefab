@@ -24,8 +24,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6084303345737949980}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 4.5, y: 3.5, z: 3}
-  m_LocalScale: {x: 0.3, y: 0.3, z: 0}
+  m_LocalPosition: {x: 3.5, y: 2, z: 3}
+  m_LocalScale: {x: 0.3, y: 0.3, z: 0.3}
   m_Children:
   - {fileID: 4797639706870426943}
   m_Father: {fileID: 0}
@@ -43,6 +43,7 @@ GameObject:
   - component: {fileID: 3272840825203861915}
   - component: {fileID: 1134974079243310075}
   - component: {fileID: 1203692712878760793}
+  - component: {fileID: 3184503629383853451}
   m_Layer: 0
   m_Name: Cube
   m_TagString: Untagged
@@ -90,7 +91,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: f8eadbef50a980840a65c08380cab534, type: 2}
+  - {fileID: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -124,3 +125,27 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &3184503629383853451
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7775413625955428764}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c54951eb37fc60b4f8aa5fbd1f5f77e2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  myMaterial: {fileID: 1134974079243310075}
+  materials:
+  - {fileID: 2100000, guid: 38dec9fd3379d944b9e24cbb1473ec8a, type: 2}
+  - {fileID: 2100000, guid: 9b5830c8094b6a44bac9e4ee6dae46ee, type: 2}
+  - {fileID: 2100000, guid: 1a5952c191d492b4da31b691797be7e0, type: 2}
+  - {fileID: 2100000, guid: d20de0add45f92b438b857163201cb6a, type: 2}
+  - {fileID: 2100000, guid: f3fe74ac766975549a03935aaf2c0078, type: 2}
+  - {fileID: 2100000, guid: 0a700c0b5fd4c1845851e18e27b54861, type: 2}
+  - {fileID: 2100000, guid: 55652a9ae61b42c4f9a2d15093c23d7a, type: 2}
+  - {fileID: 2100000, guid: 90798af1765dc1042873fcfd6e9682d1, type: 2}
+  - {fileID: 2100000, guid: c4c4e4afd1fea6d47b2f4fd2676dceca, type: 2}
+  - {fileID: 2100000, guid: 22d2283a25f15764b85b296bea1ad1b7, type: 2}
