@@ -17,6 +17,8 @@ public class GiveNextNumber : MonoBehaviour
 
     private int numberOfClicks;
 
+    public goldSpiral goldspiral;
+
     public void Start()
     {
         previousNumbers[0] = firstNumber;
@@ -36,11 +38,14 @@ public class GiveNextNumber : MonoBehaviour
         {
             currentNumberText.text = secondNumber.ToString();
             numberOfClicks++;
+            goldspiral.spawnCube(secondNumber);
             return;
         }
 
         //change currentnumber with the next number of the sequence
         currentNumber = previousNumbers[0] + previousNumbers[1];
+
+        goldspiral.spawnCube(currentNumber);
 
         //set the text to the corrosponding numbers
         previousNumbersText.text = previousNumbers[0].ToString() + " , " + previousNumbers[1].ToString();
